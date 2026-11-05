@@ -2,24 +2,38 @@
 
 **Ask Questions. Retrieve Knowledge. Get Context-Grounded Answers.**
 
-An AI-powered document question-answering system built using Retrieval-Augmented Generation (RAG), FAISS, Google Gemini, Streamlit and FastAPI.
+An AI-powered document question-answering system built using Retrieval-Augmented Generation (RAG), FAISS, Google Gemini, Streamlit, and FastAPI.
+
+## 🧠 Project Mind Map
+
+The following visual representation illustrates the complete project workflow, including document ingestion, text processing, embedding generation, vector storage, retrieval, and answer generation.
+
+<p align="center">
+  <img src="./images/Mind_map.png" alt="Intelligent Document RAG Assistant - Complete Project Mind Map" width="100%">
+</p>
+
+<p align="center">
+  <em>Visual representation of the complete RAG workflow, from PDF ingestion and text processing to semantic retrieval and AI-powered answer generation.</em>
+</p>
+
+
 
 ## 🚀 Project Overview
 
 Intelligent Document RAG Assistant enables users to interact with company leave-policy documents through natural language questions.
 
-Instead of manually searching through PDF documents, users can ask questions and retrieve relevant information through a document-based AI assistant.
+Instead of manually searching through PDF documents, users can ask questions and retrieve relevant information through an AI-powered document assistant.
 
 The system uses semantic search to retrieve relevant document chunks and Google's Gemini API to generate context-grounded answers.
 
-### ✨ Key Features
+## ✨ Key Features
 
 - 📑 **PDF Processing:** Extracts text from PDF documents using PyPDF.
 - ✂️ **Text Chunking:** Splits extracted text into manageable chunks.
 - 🧠 **Semantic Embeddings:** Generates vector representations using Sentence Transformers.
-- 🔍 **Similarity Search:** Uses FAISS for efficient vector similarity search.
+- 🔍 **Similarity Search:** Uses FAISS for vector similarity search.
 - 🤖 **AI-Powered Responses:** Uses Google Gemini to generate context-grounded answers.
-- 🛡️ **Fallback Handling:** Returns retrieved document context when Gemini is unavailable.
+- 🛡️ **Fallback Handling:** Provides retrieved document context when Gemini is unavailable.
 - 🌐 **REST API:** Exposes question-answering functionality through FastAPI.
 - 📊 **Interactive UI:** Provides a user-friendly Streamlit interface.
 - 📝 **Logging:** Maintains application logs for monitoring and debugging.
@@ -43,6 +57,8 @@ Finding specific information manually can be time-consuming. This project addres
 ## 🏗️ System Architecture
 
 ### RAG Pipeline
+
+The application follows a Retrieval-Augmented Generation workflow:
 
 ```text
 PDF Document
@@ -73,38 +89,38 @@ Generated Answer
 
 - **Streamlit:** Interactive frontend for submitting questions.
 - **FastAPI:** REST API for document question answering.
-- **RAG Pipeline:** Coordinates retrieval and answer generation.
+- **RAG Pipeline:** Coordinates document retrieval and answer generation.
 - **Document Resources:** Loads and prepares document resources with caching.
 
 ### Architecture Components
 
-| Component | Responsibility |
-|---|---|
-| PDF Loader | Extracts text from PDF documents |
-| Chunker | Splits extracted text into smaller chunks |
-| Embedder | Generates semantic embeddings |
-| FAISS | Stores and searches vector representations |
-| Retriever | Retrieves relevant document chunks |
-| Gemini | Generates context-grounded responses |
-| RAG Pipeline | Coordinates the complete workflow |
-| Streamlit | Provides the interactive user interface |
-| FastAPI | Exposes REST API endpoints |
-| Logger | Records application events and errors |
+| Component    | Responsibility                             |
+| ------------ | ------------------------------------------ |
+| PDF Loader   | Extracts text from PDF documents           |
+| Chunker      | Splits extracted text into smaller chunks  |
+| Embedder     | Generates semantic embeddings              |
+| FAISS        | Stores and searches vector representations |
+| Retriever    | Retrieves relevant document chunks         |
+| Gemini       | Generates context-grounded responses       |
+| RAG Pipeline | Coordinates the complete workflow          |
+| Streamlit    | Provides the interactive user interface    |
+| FastAPI      | Exposes REST API endpoints                 |
+| Logger       | Records application events and errors      |
 
 ## 🛠️ Technology Stack
 
-| Category | Technologies |
-|---|---|
-| Programming Language | Python |
-| PDF Processing | PyPDF |
-| Embedding Model | Sentence Transformers (`all-MiniLM-L6-v2`) |
-| Vector Search | FAISS |
-| Large Language Model | Google Gemini API |
-| Frontend | Streamlit |
-| Backend API | FastAPI |
-| API Server | Uvicorn |
-| Configuration | Python Dotenv |
-| Logging | Python Logging Module |
+| Category             | Technologies                               |
+| -------------------- | ------------------------------------------ |
+| Programming Language | Python                                     |
+| PDF Processing       | PyPDF                                      |
+| Embedding Model      | Sentence Transformers (`all-MiniLM-L6-v2`) |
+| Vector Search        | FAISS                                      |
+| Large Language Model | Google Gemini API                          |
+| Frontend             | Streamlit                                  |
+| Backend API          | FastAPI                                    |
+| API Server           | Uvicorn                                    |
+| Configuration        | Python Dotenv                              |
+| Logging              | Python Logging Module                      |
 
 ## 📁 Project Structure
 
@@ -122,7 +138,9 @@ intelligent-document-rag-assistant/
 │       └── leave_policy.pdf
 │
 ├── images/
+│   ├── Mind_map.png
 │   ├── fastapi_api_response.png
+│   ├── streamlit_gemini_response.png
 │   └── streamlit_fallback_response.png
 │
 ├── src/
@@ -197,9 +215,9 @@ Replace the placeholder with your Gemini API key.
 python -m streamlit run app/streamlit_app.py
 ```
 
-Open:
+Open the application:
 
-`http://localhost:8501`
+[http://localhost:8501](http://localhost:8501)
 
 ### FastAPI Server
 
@@ -209,17 +227,17 @@ uvicorn api.main:app --reload
 
 Open the interactive API documentation:
 
-`http://127.0.0.1:8000/docs`
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ### Available API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/` | API welcome message |
-| GET | `/health` | Health check |
-| POST | `/ask` | Submit a document-related question |
+| Method | Endpoint  | Description                        |
+| ------ | --------- | ---------------------------------- |
+| GET    | `/`       | API welcome message                |
+| GET    | `/health` | Health check                       |
+| POST   | `/ask`    | Submit a document-related question |
 
-Example request:
+### Example API Request
 
 ```json
 {
@@ -227,7 +245,7 @@ Example request:
 }
 ```
 
-Example response:
+### Example API Response
 
 ```json
 {
@@ -239,13 +257,16 @@ Example response:
 ## 📸 Application Screenshots
 
 ### 1. FastAPI – Successful API Response
-![FastAPI Response](images/fastapi_api_response.png)
+
+
 
 ### 2. Streamlit – Successful Gemini Response
-![Gemini Response](images/streamlit_gemini_response.png)
+
+
 
 ### 3. Streamlit – Fallback Response
-![Fallback Response](images/streamlit_fallback_response.png)
+
+
 
 ## ⚠️ Current Limitations
 
@@ -266,7 +287,7 @@ Example response:
 
 **Shalini Nanda**
 
-[GitHub Profile](https://github.com/Shalini-Nanda-ds)
+- **GitHub:** [Shalini-Nanda-ds](https://github.com/Shalini-Nanda-ds)
 
 ## 📄 License
 
